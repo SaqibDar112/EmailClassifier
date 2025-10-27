@@ -38,7 +38,7 @@ const Dashboard = () => {
       setEmails(data);
       localStorage.setItem(EMAIL_CACHE_KEY, JSON.stringify(data));
     } catch (err) {
-      console.error("Error fetching emails:", err);
+      console.error("❌Error fetching emails:", err);
     } finally {
       setLoading(false);
       setRefetching(false);
