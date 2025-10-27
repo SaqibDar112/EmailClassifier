@@ -1,4 +1,4 @@
-const BACKEND_ORIGIN = "http://localhost:5000";
+const BACKEND_ORIGIN = "https://emailclassifier-tk0w.onrender.com";
 
 export async function fetchEmailsAPI() {
   try {
