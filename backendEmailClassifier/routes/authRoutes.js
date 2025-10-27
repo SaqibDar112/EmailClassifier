@@ -6,11 +6,7 @@ const router = express.Router();
 router.get(
   "/google",
   passport.authenticate("google", {
-    scope: [
-      "profile",
-      "email",
-      "https://www.googleapis.com/auth/gmail.readonly",
-    ],
+    scope: ["profile", "email", "https://www.googleapis.com/auth/gmail.readonly"],
     accessType: "offline",
     prompt: "consent",
   })
@@ -19,10 +15,10 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/",
+    failureRedirect: `${process.env.FRONTEND_URL}/`,
   }),
   (req, res) => {
-    res.redirect("http://localhost:5173/dashboard");
+    res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
   }
 );
 
@@ -37,7 +33,7 @@ router.get("/me", (req, res) => {
 router.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
-    res.redirect("http://localhost:5173/");
+    res.redirect(`${process.env.FRONTEND_URL}/`);
   });
 });
 
