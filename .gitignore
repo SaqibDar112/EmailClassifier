@@ -25,3 +25,12 @@ dist-ssr
 frontendEmailClassifier/node_modules
 backendEmailClassifier/node_modules
 .env
+# Environment variables
+.env
+.env.*
+*.env
+
+# Paths
+backendEmailClassifier/.env
+frontendEmailClassifier/.env
+frontendEmailClassifier/.env.local
