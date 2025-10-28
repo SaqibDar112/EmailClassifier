@@ -1,154 +1,222 @@
-Email Classifier AI - MagicSlides Assignment
+An intelligent web application that allows users to **log in with Google OAuth**, **fetch their last X emails from Gmail**, and **classify them into categories** like *Important*, *Promotions*, *Social*, *Marketing*, *Spam*, or *General* — powered by **OpenAI GPT-4o** and **Gemini AI**.
 
-This project is a full-stack web application that allows users to log in with their Google account, fetch their 15 most recent emails, and then use AI to classify them into categories (Important, Promotions, Social, etc.).
+---
 
-Features
+## 🚀 Overview
 
-Google OAuth 2.0: Secure login using Passport.js to get permission to read emails.
+This project is built as part of the **Full-Stack Engineer Intern Assignment** for **MagicSlides.app**.
+It demonstrates my ability to design, build, and deploy a full-stack AI-integrated application using modern tools and best practices.
 
-Gmail API Integration: Fetches the user's last 15 emails, including subject, sender, and snippet.
+### ✨ Key Features
 
-AI Classification: Uses LangChain.js to manage and parse responses from an AI model, sorting emails by category.
+* 🔐 **Google OAuth 2.0 Authentication** – Secure login with Gmail.
+* 📬 **Fetch Emails from Gmail API** – Retrieves last X emails (default: 15).
+* 🤖 **AI-Powered Classification** – Uses GPT-4o (via OpenAI API) for intelligent categorization.
+* 💾 **Local Data Persistence** – Emails stored in browser’s `localStorage` (no DB required).
+* 🪄 **Responsive UI** – Built with React + TailwindCSS for smooth UX.
+* ⚙️ **MERN Backend** – Express.js API for authentication and email routes.
+* 🌐 **Deployed Setup** – Frontend on **Vercel**, Backend on **Render**.
 
-Secure Auth: Uses http-only session cookies for secure, professional-grade authentication.
+---
 
-Email Caching: Stores fetched emails in localStorage to reduce API calls, as per the assignment.
+## 🏗️ Tech Stack
 
-Tech Stack
+| Layer      | Technology                           |
+| ---------- | ------------------------------------ |
+| Frontend   | React (Vite) / TailwindCSS           |
+| Backend    | Node.js + Express.js                 |
+| Auth       | Google OAuth 2.0 (Passport.js)       |
+| AI Model   | OpenAI GPT-4o / Gemini API           |
+| Email API  | Gmail API                            |
+| Deployment | Vercel (Frontend) + Render (Backend) |
 
-Frontend: React (Vite), Tailwind CSS
+---
 
-Backend: Express.js, Passport.js, Google APIs
+## ⚙️ Architecture Overview
 
-AI: LangChain.js (@langchain/google-genai)
+```
+Frontend (React + Tailwind)
+│
+├── Google Login → Redirects to Backend (/auth/google)
+│
+├── Receives user session + stores OpenAI API key in localStorage
+│
+├── Fetch Emails (Gmail API) → Display in Dashboard
+│
+└── Classify Emails using GPT-4o → Display results in categorized tabs
+```
 
-Project Structure
+Backend (Express + Passport + Session)
 
-This repository is a monorepo containing two separate projects:
+```
+- Handles Google OAuth login/logout
+- Issues session cookies (secure in production)
+- Routes:
+  • /auth/google → Login with Google
+  • /auth/google/callback → Auth redirect
+  • /api/emails/fetch → Fetch Gmail emails (using user token)
+  • /api/emails/classify → Classify using OpenAI GPT-4o
+```
 
-/frontendEmailClassifier: The React frontend application.
+---
 
-/backendEmailClassifier: The Express.js backend server.
+## 🧠 How Email Classification Works
 
-Setup & Installation
+Each fetched email (subject + snippet/body) is passed to GPT-4o with the following prompt:
 
-You must set up both the backend and frontend separately.
+> “Classify this email as one of the following: Important, Promotions, Social, Marketing, Spam, or General.”
 
-Prerequisites
+The model returns the label, which is displayed in categorized sections on the dashboard.
 
-Node.js (v18 or higher)
+---
 
-A Google Cloud Platform project
+## 🧰 Environment Variables
 
-A Google AI Studio (Gemini) API Key
+Create a `.env` file in the backend root directory with:
 
-1. Google Cloud Console Setup (Critical)
+```
+GOOGLE_CLIENT_ID=<your_google_client_id>
+GOOGLE_CLIENT_SECRET=<your_google_client_secret>
+GOOGLE_CALLBACK_URL=<your_backend_url>/auth/google/callback
+SESSION_SECRET=<any_random_secret>
+GEMINI_API_KEY=<your_gemini_or_openai_key>
+FRONTEND_URL=<your_frontend_url>
+PORT=5000
+NODE_ENV=development
+```
 
-Before starting, you must get your Google credentials.
+For local testing:
 
-Go to the Google Cloud Console.
+```
+FRONTEND_URL=http://localhost:5173
+```
 
-Create a new project.
+For production:
 
-Go to APIs & Services > Credentials.
+```
+FRONTEND_URL=https://your-frontend.vercel.app
+```
 
-Click Create Credentials > OAuth client ID.
+---
 
-Select Web application.
+## 🧩 Installation & Setup
 
-Under Authorized redirect URIs, add your backend callback URL:
+### 🖥️ 1. Clone the Repository
 
-http://localhost:5000/auth/google/callback
+```bash
+git clone https://github.com/SaqibDar112/email-classifier.git
+cd email-classifier
+```
 
-Click Create. You will get your Client ID and Client Secret. Save these.
+### ⚙️ 2. Backend Setup
 
-Go to APIs & Services > OAuth consent screen.
-
-Under Test users, click Add Users and add the required test account:
-
-theindianappguy@gmail.com
-
-Go to APIs & Services > Library and ensure the Gmail API is enabled.
-
-2. Google AI Studio Setup
-
-Go to Google AI Studio (formerly MakerSuite).
-
-Create a new API key. Save this key.
-
-3. Backend Setup
-
-Navigate to the backend folder:
-
-cd backendEmailClassifier
-
-
-Install dependencies:
-
+```bash
+cd backend____
 npm install
+```
 
+Create `.env` file (see above), then run:
 
-Create a .env file in this folder:
+```bash
+npm run dev
+```
 
-touch .env
+### 💻 3. Frontend Setup
 
-
-Add your credentials to the .env file:
-
-# Google OAuth Credentials (from Step 1)
-GOOGLE_CLIENT_ID=YOUR_GOOGLE_CLIENT_ID
-GOOGLE_CLIENT_SECRET=YOUR_GOOGLE_SECRET
-
-# Google AI Studio Key (from Step 2)
-GEMINI_API_KEY=YOUR_GEMINI_API_KEY
-
-# A random string for session security
-SESSION_SECRET=myrandomsecretkey12345
-
-
-4. Frontend Setup
-
-Open a new terminal and navigate to the frontend folder:
-
-cd frontendEmailClassifier
-
-
-Install dependencies:
-
+```bash
+cd frontend____
 npm install
+```
 
+Add your backend URL in `.env`:
 
-Create a .env file for your Vite environment:
-
-touch .env
-
-
-Add the path to your backend server:
-
-# This must match the port in your backend's server.js
+```
 VITE_BACKEND_URL=http://localhost:5000
+```
 
+Run frontend:
 
-Running the Application
-
-Start the Backend:
-In your first terminal (in /backendEmailClassifier):
-
+```bash
 npm run dev
+```
 
+Visit:
+👉 **[http://localhost:5173](http://localhost:5173)**
 
-(This assumes you have a dev script for nodemon in your package.json)
+---
 
-Start the Frontend:
-In your second terminal (in /frontendEmailClassifier):
+## 🌍 Deployment
 
-npm run dev
+* **Frontend:** Deploy to [Vercel](https://vercel.com/)
+  Example: `https://emailclassifier.vercel.app`
+* **Backend:** Deploy to [Render](https://render.com/)
+  Example: `https://emailclassifier.onrender.com`
 
+Make sure to set environment variables on both platforms.
 
-Open your browser and go to http://localhost:5173.
+---
 
-Note on Tech Stack (Assignment Requirement)
+## 🔒 Authentication Notes
 
-This project fully implements the assignment's logic. It meets the requirement to use LangChain.js for handling AI classification.
+Due to Google’s verification policies:
 
-Due to expired OpenAI trial credits, LangChain.js has been connected to the Google Gemini API (gemini-2.5-flash-lite) instead of GPT-4o. This change maintains the core requirement of using LangChain for prompt management and reliable JSON output parsing (StructuredOutputParser) while utilizing the free tier of the Gemini API.
+> You must add **[theindianappguy@gmail.com](mailto:theindianappguy@gmail.com)** as a test user in your Google Cloud OAuth credentials.
+
+Steps:
+
+1. Go to [Google Cloud Console → APIs & Services → Credentials](https://console.cloud.google.com/apis/credentials).
+2. Select your OAuth Client ID.
+3. Add `theindianappguy@gmail.com` under “Test Users”.
+4. Save and redeploy your backend.
+
+---
+
+## 🧪 Testing Locally
+
+1. Start backend: `npm run dev` (port 5000)
+2. Start frontend: `npm run dev` (port 5173)
+3. Go to `http://localhost:5173`
+4. Log in with Google → Fetch emails → Classify with AI
+5. Results appear in category cards.
+
+---
+
+## 🧠 Example Classifications
+
+| Category       | Description                              |
+| -------------- | ---------------------------------------- |
+| **Important**  | Work/personal emails needing attention   |
+| **Promotions** | Sales, discounts, campaigns              |
+| **Social**     | From friends, family, or social networks |
+| **Marketing**  | Newsletters, brand notifications         |
+| **Spam**       | Unwanted or unsolicited mail             |
+| **General**    | Anything that doesn’t fit above          |
+
+---
+
+## 🪄 Future Enhancements
+
+* ✉️ Paginated email fetching
+* 🧭 Search & filter support
+* 💾 Optional database storage for analytics
+* 📊 Classification accuracy tracking
+* 🌙 Dark mode
+
+---
+
+## 🧑‍💻 Author
+
+**Saqib Dar**
+Full Stack Developer | MERN + AI Integrations
+🔗 [GitHub](https://github.com/saqibdar25)
+📧 [saqibdar.dev@gmail.com](mailto:saqibdar.dev@gmail.com)
+
+---
+
+## 🧾 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+✅ *Built with passion, precision, and clean code for MagicSlides.app.*
