@@ -26,7 +26,7 @@ It demonstrates my ability to design, build, and deploy a full-stack AI-integrat
 | Frontend   | React (Vite) / TailwindCSS           |
 | Backend    | Node.js + Express.js                 |
 | Auth       | Google OAuth 2.0 (Passport.js)       |
-| AI Model   | OpenAI GPT-4o / Gemini API           |
+| AI Model   | Gemini API                           |
 | Email API  | Gmail API                            |
 | Deployment | Vercel (Frontend) + Render (Backend) |
 
@@ -208,8 +208,8 @@ Steps:
 
 **Saqib Dar**
 Full Stack Developer | MERN + AI Integrations
-🔗 [GitHub](https://github.com/saqibdar25)
-📧 [saqibdar.dev@gmail.com](mailto:saqibdar.dev@gmail.com)
+🔗 [GitHub](https://github.com/SaqibDar112)
+📧 [darsaqib4979@gmail.com](mailto:darsaqib4979@gmail.com)
 
 ---
 
@@ -220,3 +220,4 @@ This project is licensed under the **MIT License**.
 ---
 
 ✅ *Built with passion, precision, and clean code for MagicSlides.app.*
+
