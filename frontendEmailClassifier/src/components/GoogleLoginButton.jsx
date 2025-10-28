@@ -1,8 +1,13 @@
 import React from "react";
 
+const API_BASE_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5000"
+    : "https://emailclassifier-tk0w.onrender.com";
+
 export default function GoogleLoginButton() {
   const handleLogin = () => {
-    window.open("http://localhost:5000/auth/google", "_self");
+    window.open(`${API_BASE_URL}/auth/google`, "_self");
   };
 
   return (

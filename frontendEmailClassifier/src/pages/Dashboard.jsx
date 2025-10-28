@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 const GEMINI_KEY = "geminiKey";
 const EMAIL_CACHE_KEY = "userEmails";
 
+const API_BASE_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:5000"
+    : "https://emailclassifier-tk0w.onrender.com";
+
 const Dashboard = () => {
   const [emails, setEmails] = useState(() => {
     const cachedEmails = localStorage.getItem(EMAIL_CACHE_KEY);
@@ -23,7 +28,7 @@ const Dashboard = () => {
     else setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:5000/api/emails/fetch`, {
+      const res = await fetch(`${API_BASE_URL}/api/emails/fetch`, {
         credentials: "include",
       });
 
@@ -38,7 +43,7 @@ const Dashboard = () => {
       setEmails(data);
       localStorage.setItem(EMAIL_CACHE_KEY, JSON.stringify(data));
     } catch (err) {
-      console.error("❌Error fetching emails:", err);
+      console.error("❌ Error fetching emails:", err);
     } finally {
       setLoading(false);
       setRefetching(false);
@@ -67,7 +72,7 @@ const Dashboard = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/emails/classify", {
+      const res = await fetch(`${API_BASE_URL}/api/emails/classify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -111,7 +116,7 @@ const Dashboard = () => {
   const handleLogout = () => {
     localStorage.removeItem(GEMINI_KEY);
     localStorage.removeItem(EMAIL_CACHE_KEY);
-    window.location.href = "http://localhost:5000/auth/logout";
+    window.location.href = `${API_BASE_URL}/auth/logout`;
   };
 
   const handleSetGeminiKey = () => {
