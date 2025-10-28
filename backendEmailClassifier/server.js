@@ -10,8 +10,10 @@ import "./config/passportSetup.js";
 dotenv.config();
 const app = express();
 
+app.set("trust proxy", 1);
+
 if (!process.env.GEMINI_API_KEY) {
-  console.warn("⚠️  Warning: GEMINI_API_KEY is missing in your .env file");
+  console.warn("⚠️ Warning: GEMINI_API_KEY is missing in your .env file");
 } else {
   console.log("✅ Gemini API key loaded successfully");
 }
@@ -21,29 +23,12 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      process.env.FRONTEND_URL,
+      process.env.FRONTEND_URL || "https://email-classifier-tau.vercel.app",
       "http://localhost:5173",
     ],
     credentials: true,
   })
 );
-
-app.use((req, res, next) => {
-  const allowedOrigin =
-    req.headers.origin === process.env.FRONTEND_URL ||
-    req.headers.origin === "http://localhost:5173"
-      ? req.headers.origin
-      : process.env.FRONTEND_URL;
-
-  res.header("Access-Control-Allow-Origin", allowedOrigin);
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  next();
-});
 
 app.use(
   session({
