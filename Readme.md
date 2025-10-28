@@ -1,5 +1,5 @@
 ## Live Link - https://email-classifier-tau.vercel.app
-You need to wait if you are using first time as using free cloud service it takes upto one min to start backend
+**You need to wait if you are using first time as using free cloud service it takes upto one min to start backend**
 
 An intelligent web application that allows users to **log in with Google OAuth**, **fetch their last X emails from Gmail**, and **classify them into categories** like *Important*, *Promotions*, *Social*, *Marketing*, *Spam*, or *General* — powered by **OpenAI GPT-4o** and **Gemini AI**.
 
@@ -223,5 +223,6 @@ This project is licensed under the **MIT License**.
 ---
 
 ✅ *Built with passion, precision, and clean code for MagicSlides.app.*
+
 
 
