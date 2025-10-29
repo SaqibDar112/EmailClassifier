@@ -114,7 +114,7 @@ cd email-classifier
 ### ⚙️ 2. Backend Setup
 
 ```bash
-cd backendEmailClassfier
+cd backendEmailClassifier
 npm install
 ```
 
@@ -127,7 +127,7 @@ npm run dev
 ### 💻 3. Frontend Setup
 
 ```bash
-cd frontendEmailClassifer
+cd frontendEmailClassifier
 npm install
 ```
 
