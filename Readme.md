@@ -1,20 +1,15 @@
 ## Live Link - https://email-classifier-tau.vercel.app
 **You need to wait if you are using first time as using free cloud service it takes upto one min to start backend**
 
-An intelligent web application that allows users to **log in with Google OAuth**, **fetch their last X emails from Gmail**, and **classify them into categories** like *Important*, *Promotions*, *Social*, *Marketing*, *Spam*, or *General* — powered by **OpenAI GPT-4o** and **Gemini AI**.
+An intelligent web application that allows users to **log in with Google OAuth**, **fetch their last X emails from Gmail**, and **classify them into categories** like *Important*, *Promotions*, *Social*, *Marketing*, *Spam*, or *General* — powered by **Gemini Ai**.
 
 ---
-
-## 🚀 Overview
-
-This project is built as part of the **Full-Stack Engineer Intern Assignment** for **MagicSlides.app**.
-It demonstrates my ability to design, build, and deploy a full-stack AI-integrated application using modern tools and best practices.
 
 ### ✨ Key Features
 
 * 🔐 **Google OAuth 2.0 Authentication** – Secure login with Gmail.
 * 📬 **Fetch Emails from Gmail API** – Retrieves last X emails (default: 15).
-* 🤖 **AI-Powered Classification** – Uses GPT-4o (via OpenAI API) for intelligent categorization.
+* 🤖 **AI-Powered Classification** – Uses GPT-4.2 (via Gemini API) for intelligent categorization.
 * 💾 **Local Data Persistence** – Emails stored in browser’s `localStorage` (no DB required).
 * 🪄 **Responsive UI** – Built with React + TailwindCSS for smooth UX.
 * ⚙️ **MERN Backend** – Express.js API for authentication and email routes.
@@ -65,7 +60,7 @@ Backend (Express + Passport + Session)
 
 ## 🧠 How Email Classification Works
 
-Each fetched email (subject + snippet/body) is passed to GPT-4o with the following prompt:
+Each fetched email (subject + snippet/body) is passed to GPT-4.2 with the following prompt:
 
 > “Classify this email as one of the following: Important, Promotions, Social, Marketing, Spam, or General.”
 
@@ -78,14 +73,14 @@ The model returns the label, which is displayed in categorized sections on the d
 Create a `.env` file in the backend root directory with:
 
 ```
-GOOGLE_CLIENT_ID=<your_google_client_id>
-GOOGLE_CLIENT_SECRET=<your_google_client_secret>
-GOOGLE_CALLBACK_URL=<your_backend_url>/auth/google/callback
-SESSION_SECRET=<any_random_secret>
-GEMINI_API_KEY=<your_gemini_or_openai_key>
-FRONTEND_URL=<your_frontend_url>
+GOOGLE_CLIENT_ID=******
+GOOGLE_CLIENT_SECRET=*********
+GOOGLE_CALLBACK_URL=backednurl/auth/google/callback
+SESSION_SECRET=*********
+GEMINI_API_KEY=*******
+FRONTEND_URL= deployed or if running locally the  localhost:5173
 PORT=5000
-NODE_ENV=development
+NODE_ENV=******
 ```
 
 For local testing:
@@ -163,13 +158,14 @@ Make sure to set environment variables on both platforms.
 
 Due to Google’s verification policies:
 
-> You must add **[theindianappguy@gmail.com](mailto:theindianappguy@gmail.com)** as a test user in your Google Cloud OAuth credentials.
+> You can login only if test user is listed in GCC now use this - **[darsaqib4979@gmail.com](mailto:darsaqib4979@gmail.com)** as a test user in your Google Cloud OAuth credentials.
+> **OR do it by creating this in GCC**
 
 Steps:
 
 1. Go to [Google Cloud Console → APIs & Services → Credentials](https://console.cloud.google.com/apis/credentials).
 2. Select your OAuth Client ID.
-3. Add `theindianappguy@gmail.com` under “Test Users”.
+3. Add `darsaqib4979@gmail.com or your mail` under “Test Users”.
 4. Save and redeploy your backend.
 
 ---
@@ -222,7 +218,8 @@ This project is licensed under the **MIT License**.
 
 ---
 
-✅ *Built with passion, precision, and clean code for MagicSlides.app.*
+✅ *Built with passion, precision, and clean code for learning about api's.*
+
 
 
 
