@@ -159,14 +159,7 @@ Make sure to set environment variables on both platforms.
 Due to Google’s verification policies:
 
 > You can login only if test user is listed in GCC now use this - **[darsaqib4979@gmail.com](mailto:darsaqib4979@gmail.com)** as a test user in your Google Cloud OAuth credentials.
-> **OR do it by creating this in GCC**
-
-Steps:
-
-1. Go to [Google Cloud Console → APIs & Services → Credentials](https://console.cloud.google.com/apis/credentials).
-2. Select your OAuth Client ID.
-3. Add `darsaqib4979@gmail.com or your mail` under “Test Users”.
-4. Save and redeploy your backend.
+> **OR You can contact me to add your mail for test users then you can access to site.**
 
 ---
 
@@ -219,6 +212,7 @@ This project is licensed under the **MIT License**.
 ---
 
 ✅ *Built with passion, precision, and clean code for learning about api's.*
+
 
 
 
